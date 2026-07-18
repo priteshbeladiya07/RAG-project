@@ -1,73 +1,26 @@
-...existing code...
-# RAG Project — Readme
+# RAG-project
 
-Summary
-- This repository implements a Retrieval-Augmented Generation (RAG) pipeline: ingest documents, create embeddings, store vectors in a vector DB, and serve a retrieval + LLM inference layer (API + lightweight UI).
-- Goal: let users ask questions against a private corpus and get context-grounded LLM answers.
+## Summary
+A simple Retrieval-Augmented Generation (RAG) project focused on producing concise summaries and context-aware answers from your own documents and websites—not on building new ML models.
 
-Quick highlights
-- Vector DB: Chroma
-- Embeddings: sentence-transformers / transformers (PyTorch)
-- LLM provider: Mistral via langchain-mistralai
-- Web/API: FastAPI + Uvicorn
-- UI: Streamlit
-- Python tested with 3.12
+## What this project does
+- PDF summaries (single or batch)
+- Plain text summaries
+- Website / URL summaries (HTML content)
+- Short Q&A and context-grounded answers using retrieved document excerpts
+- Exportable outputs (plain text / markdown)
 
+## Who this is for
+Anyone who wants quick, accurate summaries or answers from their private corpus (reports, manuals, web pages) without dealing with model training.
 
-Setup (Windows)
-1. Create & activate venv
-   - python -m venv .\venv
-   - .\venv\Scripts\activate
-2. Install dependencies
-   - pip install -r "e:\RAG project\requirements.txt"
+## How to use (high-level)
+1. Place input files in the `data/` folder or provide URLs.
+2. Run the ingestion/processing script to extract and chunk text.
+3. Build or update the vector store.
+4. Use the UI or API to request summaries or ask questions.
 
-Environment variables
-- Create a .env in the project root or set env vars in your system:
-  - MISTRALAI_API_KEY — API key for Mistral provider
-  - CHROMA_DB_DIR — optional path for Chroma persistence
-  - (Any other provider-specific keys you use)
+## Notes
+- Uses preconfigured LLM and embedding providers.
+- Focuses on retrieval + summarization/Q&A, not model training.
+- Tune chunk sizes and retrieval settings for better results.
 
-Project layout (typical)
-- data/              — raw documents to ingest (PDF, HTML, text)
-- ingest/            — loaders + pre-processing and chunking scripts
-- embeddings/        — embedding model code or wrappers
-- vectorstore/       — Chroma init and persistence utilities
-- api/               — FastAPI app exposing query endpoints
-- ui/                — Streamlit app for interactive queries
-- requirements.txt   — pinned deps (already included)
-
-Common commands
-- Run ingestion (example)
-  - python ingest/run_ingest.py --source data/ --persist-dir ./chroma_db
-- Run API
-  - uvicorn api.main:app --reload --port 8000
-- Run UI (Streamlit)
-  - streamlit run ui/app.py
-- Rebuild embeddings (if model or data changed)
-  - python embeddings/rebuild_embeddings.py --persist-dir ./chroma_db
-
-How it works (high level)
-1. Load documents via loaders (pypdf, unstructured, bs4, etc.)
-2. Clean & chunk text (overlap + token limits)
-3. Embed chunks with sentence-transformers or provider embeddings
-4. Persist vectors into Chroma for fast similarity search
-5. Query flow:
-   - User query -> retrieve top-k similar chunks -> construct prompt with context -> call LLM (Mistral) to generate answer
-
-Notes & tips
-- Tune chunk size and overlap for best retrieval quality.
-- Use persistent Chroma directory (CHROMA_DB_DIR) to avoid reindexing.
-- Monitor token usage when using external LLM providers.
-- If using local GPU models, ensure torch and transformers are configured for available CUDA.
-
-Troubleshooting
-- Install errors on Python 3.12: ensure numba/pinned libs in requirements; update pip: python -m pip install --upgrade pip wheel
-- Chroma permissions: verify CHROMA_DB_DIR exists and is writable
-
-License
-- Add your chosen license file (e.g., MIT) to the repo root.
-
-Contact / Next steps
-- Add README sections for any team-specific conventions, example notebooks, or detailed API docs as needed.
-
-...existing code...
