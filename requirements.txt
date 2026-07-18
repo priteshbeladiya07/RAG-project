@@ -1,0 +1,52 @@
+# ==========================
+# Python 3.12.10 Compatible
+# ==========================
+
+# LangChain
+langchain>=0.3.27
+langchain-core>=0.3.75
+langchain-community>=0.3.29
+
+# LLM Providers
+
+langchain-mistralai>=0.2.11
+
+mistralai>=1.9.10
+
+# Vector Database
+chromadb>=1.0.20
+
+# Embedding Models
+sentence-transformers>=5.1.0
+transformers>=4.56.0
+torch>=2.8.0
+
+# Document Loaders
+pypdf>=6.0.0
+unstructured>=0.18.15
+beautifulsoup4>=4.13.5
+lxml>=6.0.1
+
+# Text Processing
+tiktoken>=0.11.0
+
+# Environment Variables
+python-dotenv>=1.1.1
+
+# Data Handling
+pandas>=2.3.2
+numpy>=2.3.2
+
+# API
+fastapi>=0.116.1
+uvicorn>=0.35.0
+
+# UI
+streamlit>=1.49.0
+
+# Utilities
+tqdm>=4.67.1
+requests>=2.32.5
+
+# Numba for Python 3.12 compatibility
+numba>=0.59.0
