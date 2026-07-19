@@ -282,7 +282,7 @@ git push origin feature-name
 
 # 👨‍💻 Author
 
-**Jeet Gondaliya**
+**Pritesh Beladiya**
 
 GitHub:
 https://github.com/priteshbeladiya07
